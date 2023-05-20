@@ -1,3 +1,6 @@
+import React from "react"
+import * as ReactDOM from "react-dom/client"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import {
   AppShell,
   Navbar,
@@ -8,9 +11,13 @@ import {
   Text
 } from "@mantine/core"
 import "./App.css"
-// import Navbar from "./components/Navbar"
-// import Footer from "./components/Footer"
+// import Navbar from "./components/Navbar";
+// import Footer from "./components/Footer";
 import Landing from "./pages/Landing"
+import Proposal from "./pages/Proposal"
+import Voting from "./pages/Voting"
+import Progress from "./pages/Progress"
+import Milestone from "./pages/Milestone"
 
 function App() {
   // function openSignupPopup() {
@@ -53,65 +60,69 @@ function App() {
   // }
 
   return (
-    <AppShell
-      padding="md"
-      navbar={
-        <Navbar width={{ base: 300 }} height={"100%"} p="xs">
-          {/* Navbar content */}
-        </Navbar>
-      }
-      header={
-        <Header height={100} p="xs">
-          OLYMPIHACKS SOLANA
-        </Header>
-      }
-      styles={(theme) => ({
-        main: {
-          backgroundColor: theme.colors.dark[7]
+    <Router>
+      <AppShell
+        padding="md"
+        navbar={<Navbar width={{ base: 300 }} height={"100%"} p="xs"></Navbar>}
+        header={
+          <Header height={100} p="xs">
+            OLYMPIHACKS SOLANA
+          </Header>
         }
-      })}
-    ></AppShell>
-
-    // <div>
-    //   <Navbar />
-    //   <Landing />
-    //   <Footer />
-    //   <div id="signUpPopup" className="popup">
-    //     <div className="popup-content">
-    //       <span className="close" onclick="closeSignupPopup()">
-    //         &times;
-    //       </span>
-    //       <h2>Sign Up</h2>
-    //       <form>
-    //         <div className="input-wrapper">
-    //           <input type="text" placeholder="Username" />
-    //         </div>
-    //         <div className="input-wrapper">
-    //           <input type="password" placeholder="Password" />
-    //         </div>
-    //         <button type="submit">Submit</button>
-    //       </form>
-    //     </div>
-    //   </div>
-    //   <div id="logInPopup" className="popup">
-    //     <div className="popup-content">
-    //       <span className="close" onclick="closeLoginPopup()">
-    //         &times;
-    //       </span>
-    //       <h2>Log In</h2>
-    //       <form>
-    //         <div className="input-wrapper">
-    //           <input type="text" placeholder="Username" />
-    //         </div>
-    //         <div className="input-wrapper">
-    //           <input type="password" placeholder="Password" />
-    //         </div>
-    //         <button type="submit">Submit</button>
-    //       </form>
-    //     </div>
-    //   </div>
-    // </div>
+        styles={(theme) => ({
+          main: {
+            backgroundColor: theme.colors.dark[7]
+          }
+        })}
+      >
+        <Routes>
+          <Route exact path="/" element={<Landing />} />
+          <Route path="/proposal" element={<Proposal />} />
+          <Route path="/voting" element={<Voting />} />
+          <Route path="/progress" element={<Progress />} />
+          <Route path="/milestone" element={<Milestone />} />
+        </Routes>
+      </AppShell>
+    </Router>
+    /* <div id="signUpPopup" className="popup">
+          <div className="popup-content">
+            <span className="close" onclick="closeSignupPopup()">
+              &times;
+            </span>
+            <h2>Sign Up</h2>
+            <form>
+              <div className="input-wrapper">
+                <input type="text" placeholder="Username" />
+              </div>
+              <div className="input-wrapper">
+                <input type="password" placeholder="Password" />
+              </div>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+        <div id="logInPopup" className="popup">
+          <div className="popup-content">
+            <span className="close" onclick="closeLoginPopup()">
+              &times;
+            </span>
+            <h2>Log In</h2>
+            <form>
+              <div className="input-wrapper">
+                <input type="text" placeholder="Username" />
+              </div>
+              <div className="input-wrapper">
+                <input type="password" placeholder="Password" />
+              </div>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div> */
   )
 }
 
 export default App
+
+const root = ReactDOM.createRoot(document.getElementById("root"))
+root.render(<App />)
