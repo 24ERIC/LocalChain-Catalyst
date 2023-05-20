@@ -1,10 +1,10 @@
 // Navbar sits on top
 const Navbar = () => {
-  function openSignupPopup() {
+  function openNearAuthPopup() {
     document.getElementById("signUpPopup").style.display = "block"
   }
 
-  function openLoginPopup() {
+  function openMetamaskAuthPopup() {
     document.getElementById("logInPopup").style.display = "block"
   }
   return (
@@ -21,20 +21,20 @@ const Navbar = () => {
         <a
           href="#"
           className="w3-bar-item w3-button"
-          id="signupBtn"
-          onClick={openSignupPopup}
+          id="nearAuth"
+          onClick={openNearAuthPopup}
         >
           {" "}
-          Sign Up
+          NEAR
         </a>
         <a
           href="#"
           className="w3-bar-item w3-button"
-          id="loginBtn"
-          onClick={openLoginPopup}
+          id="metamaskAuth"
+          onClick={openMetamaskAuthPopup}
         >
           {" "}
-          Log In
+          METAMASK
         </a>
         <a href="#pricing" className="w3-bar-item w3-button">
           PRICING
