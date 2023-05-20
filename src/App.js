@@ -65,7 +65,7 @@ function App() {
         <Footer />
         <div id="signUpPopup" className="popup">
           <div className="popup-content">
-            <span className="close" onclick="closeSignupPopup()">
+            <span className="close" onClick={closeSignupPopup}>
               &times;
             </span>
             <h2>Sign Up</h2>
@@ -82,7 +82,7 @@ function App() {
         </div>
         <div id="logInPopup" className="popup">
           <div className="popup-content">
-            <span className="close" onclick="closeLoginPopup()">
+            <span className="close" onClick={closeLoginPopup}>
               &times;
             </span>
             <h2>Log In</h2>
@@ -97,6 +97,7 @@ function App() {
             </form>
           </div>
         </div>
+
       </div>
     </Router>
   )
