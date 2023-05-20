@@ -12,7 +12,7 @@
 }
 
 .popup-content {
-  background-color: #000;
+  background-color: #1a1b1e;
   margin: 15% auto;
   padding: 20px;
   border: none;
@@ -54,7 +54,6 @@ input {
   border-radius: 5px;
   background-color: #000;
   color: #fff;
-  font-family: "Orbitron", sans-serif;
   letter-spacing: 1px;
 }
 
@@ -79,22 +78,11 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-family: "Orbitron", sans-serif;
   letter-spacing: 1px;
 }
 
 button:hover {
   background-color: #00cc00;
-}
-
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Raleway", sans-serif;
 }
 
 body,
