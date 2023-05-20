@@ -1,7 +1,15 @@
-import "./App.css"
-import Navbar from "./components/Navbar"
-import Footer from "./components/Footer"
-import Landing from "./pages/Landing"
+import "./App.css";
+import React from "react";
+import * as ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Landing from "./pages/Landing";
+import Proposal from "./pages/Proposal";
+import Voting from "./pages/Voting";
+import Progress from "./pages/Progress";
+import Milestone from "./pages/Milestone";
+
 
 function App() {
   function openSignupPopup() {
@@ -43,46 +51,59 @@ function App() {
     mySidebar.style.display = "none"
   }
   return (
-    <div>
-      <Navbar />
-      <Landing />
-      <Footer />
-      <div id="signUpPopup" className="popup">
-        <div className="popup-content">
-          <span className="close" onclick="closeSignupPopup()">
-            &times;
-          </span>
-          <h2>Sign Up</h2>
-          <form>
-            <div className="input-wrapper">
-              <input type="text" placeholder="Username" />
-            </div>
-            <div className="input-wrapper">
-              <input type="password" placeholder="Password" />
-            </div>
-            <button type="submit">Submit</button>
-          </form>
+    <Router>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Landing />} />
+          <Route path="/proposal" element={<Proposal />} />
+          <Route path="/voting" element={<Voting />} />
+          <Route path="/progress" element={<Progress />} />
+          <Route path="/milestone" element={<Milestone />} />
+        </Routes>
+
+        <Footer />
+        <div id="signUpPopup" className="popup">
+          <div className="popup-content">
+            <span className="close" onclick="closeSignupPopup()">
+              &times;
+            </span>
+            <h2>Sign Up</h2>
+            <form>
+              <div className="input-wrapper">
+                <input type="text" placeholder="Username" />
+              </div>
+              <div className="input-wrapper">
+                <input type="password" placeholder="Password" />
+              </div>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+        <div id="logInPopup" className="popup">
+          <div className="popup-content">
+            <span className="close" onclick="closeLoginPopup()">
+              &times;
+            </span>
+            <h2>Log In</h2>
+            <form>
+              <div className="input-wrapper">
+                <input type="text" placeholder="Username" />
+              </div>
+              <div className="input-wrapper">
+                <input type="password" placeholder="Password" />
+              </div>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
         </div>
       </div>
-      <div id="logInPopup" className="popup">
-        <div className="popup-content">
-          <span className="close" onclick="closeLoginPopup()">
-            &times;
-          </span>
-          <h2>Log In</h2>
-          <form>
-            <div className="input-wrapper">
-              <input type="text" placeholder="Username" />
-            </div>
-            <div className="input-wrapper">
-              <input type="password" placeholder="Password" />
-            </div>
-            <button type="submit">Submit</button>
-          </form>
-        </div>
-      </div>
-    </div>
+    </Router>
   )
 }
 
 export default App
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
