@@ -1,23 +1,17 @@
 import React from "react"
 import * as ReactDOM from "react-dom/client"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import {
-  AppShell,
-  Navbar,
-  Header,
-  Aside,
-  Footer,
-  Button,
-  Text
-} from "@mantine/core"
+import { AppShell, Navbar, Header, Aside, Footer } from "@mantine/core"
 import "./App.css"
 // import Navbar from "./components/Navbar";
 // import Footer from "./components/Footer";
 import Landing from "./pages/Landing"
-import Proposal from "./pages/Proposal"
+import Home from "./pages/Home"
+import Proposals from "./pages/Proposals"
 import Voting from "./pages/Voting"
-import Progress from "./pages/Progress"
-import Milestone from "./pages/Milestone"
+import Milestones from "./pages/Milestones"
+import SubmitProposal from "./pages/SubmitProposal"
+import Navigation from "./components/Navigation"
 
 function App() {
   // function openSignupPopup() {
@@ -63,7 +57,11 @@ function App() {
     <Router>
       <AppShell
         padding="md"
-        navbar={<Navbar width={{ base: 300 }} height={"100%"} p="xs"></Navbar>}
+        navbar={
+          <Navbar width={{ base: 300 }} height={"100%"} p="xs">
+            <Navigation />
+          </Navbar>
+        }
         header={
           <Header height={100} p="xs">
             OLYMPIHACKS SOLANA
@@ -77,10 +75,11 @@ function App() {
       >
         <Routes>
           <Route exact path="/" element={<Landing />} />
-          <Route path="/proposal" element={<Proposal />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/proposals" element={<Proposals />} />
           <Route path="/voting" element={<Voting />} />
-          <Route path="/progress" element={<Progress />} />
-          <Route path="/milestone" element={<Milestone />} />
+          <Route path="/milestones" element={<Milestones />} />
+          <Route path="/submitProposal" element={<SubmitProposal />} />
         </Routes>
       </AppShell>
     </Router>
