@@ -1,5 +1,12 @@
 // Navbar sits on top
 const Navbar = () => {
+  function openSignupPopup() {
+    document.getElementById("signUpPopup").style.display = "block"
+  }
+
+  function openLoginPopup() {
+    document.getElementById("logInPopup").style.display = "block"
+  }
   return (
     // <div className="w3-top">
     <div className="w3-bar w3-white w3-card" id="myNavbar">
@@ -15,7 +22,7 @@ const Navbar = () => {
           href="#"
           className="w3-bar-item w3-button"
           id="signupBtn"
-          onclick="openSignupPopup()"
+          onClick={openSignupPopup}
         >
           {" "}
           Sign Up
@@ -24,7 +31,7 @@ const Navbar = () => {
           href="#"
           className="w3-bar-item w3-button"
           id="loginBtn"
-          onclick="openLoginPopup()"
+          onClick={openLoginPopup}
         >
           {" "}
           Log In
