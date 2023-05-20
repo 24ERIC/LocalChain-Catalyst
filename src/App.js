@@ -1,7 +1,7 @@
 import React from "react"
 import * as ReactDOM from "react-dom/client"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { AppShell, Navbar, Header, Aside, Footer } from "@mantine/core"
+import { AppShell, Navbar, Header } from "@mantine/core"
 import "./App.css"
 // import Navbar from "./components/Navbar";
 // import Footer from "./components/Footer";
@@ -12,6 +12,7 @@ import Voting from "./pages/Voting"
 import Milestones from "./pages/Milestones"
 import SubmitProposal from "./pages/SubmitProposal"
 import Navigation from "./components/Navigation"
+import ScrollingHeader from "./components/ScrollingHeader"
 
 function App() {
   // function openSignupPopup() {
@@ -64,7 +65,7 @@ function App() {
         }
         header={
           <Header height={100} p="xs">
-            OLYMPIHACKS SOLANA
+            <ScrollingHeader />
           </Header>
         }
         styles={(theme) => ({
