@@ -1,10 +1,21 @@
-function openPopup() {
-  document.getElementById("popup").style.display = "block";
+function openSignupPopup() {
+  document.getElementById("signUpPopup").style.display = "block";
 }
 
-function closePopup() {
-  document.getElementById("popup").style.display = "none";
+function closeSignupPopup() {
+  document.getElementById("signUpPopup").style.display = "none";
 }
+
+function openLoginPopup() {
+  document.getElementById("logInPopup").style.display = "block";
+}
+
+function closeLoginPopup() {
+  document.getElementById("logInPopup").style.display = "none";
+}
+
+
+
 function onClick(element) {
   document.getElementById("img01").src = element.src;
   document.getElementById("modal01").style.display = "block";
