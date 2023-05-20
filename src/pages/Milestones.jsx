@@ -1,12 +1,12 @@
 import React from 'react';
 
-function Milestone() {
+function Milestones() {
   return (
     <div>
-      <h1>Milestone Page</h1>
+      <h1>Milestones Page</h1>
       {/* Add your milestone page content here */}
     </div>
   );
 }
 
-export default Milestone;
+export default Milestones;
