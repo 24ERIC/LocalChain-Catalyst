@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { createStyles } from "@mantine/styles"
-import { ChartBar, Checkbox, Home, Mailbox } from "tabler-icons-react"
+import { ChartBar, Checkbox, Home, Logout, Mailbox } from "tabler-icons-react"
+import { Text } from "@mantine/core"
 
 const routes = [
   {
@@ -56,20 +57,35 @@ const Navigation = () => {
   const { classes, cx } = useStyles()
 
   return (
-    <>
-      {routes.map((route) => (
-        <Link
-          key={route.label}
-          className={cx(classes.link, {
-            [classes.linkActive]: route.label === active
-          })}
-          to={route.link}
-          onClick={() => setActive(route.label)}
-        >
-          {route.icon}&nbsp;&nbsp;{route.label}
-        </Link>
-      ))}
-    </>
+    <div
+      style={{
+        height: "calc(100% - 82px)",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between"
+      }}
+    >
+      <div>
+        {routes.map((route) => (
+          <Link
+            key={route.label}
+            className={cx(classes.link, {
+              [classes.linkActive]: route.label === active
+            })}
+            to={route.link}
+            onClick={() => setActive(route.label)}
+          >
+            {route.icon}&nbsp;&nbsp;{route.label}
+          </Link>
+        ))}
+      </div>
+      <div onClick={() => console.log("i will log out")}>
+        <Text className={classes.link} sx={{ cursor: "pointer" }}>
+          <Logout size={22} strokeWidth={2} color={"grey"} />
+          &nbsp;&nbsp; Log out
+        </Text>
+      </div>
+    </div>
   )
 }
 
