@@ -81,10 +81,6 @@ button {
   letter-spacing: 1px;
 }
 
-button:hover {
-  background-color: #00cc00;
-}
-
 body,
 html {
   
