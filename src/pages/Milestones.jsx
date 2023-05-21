@@ -1,10 +1,10 @@
-import { Progress, Title, useMantineTheme } from "@mantine/core"
+import { Progress, Title, useMantineTheme, Text } from "@mantine/core"
 
 const Milestones = () => {
   const theme = useMantineTheme()
   return (
     <>
-      <Title sx={{ color: theme.colors.teal[5] }}>
+      <Title sx={{ color: theme.colors.teal[5], marginBottom: "40px" }}>
         Project Milestones Achieved
       </Title>
       <Progress
@@ -13,32 +13,32 @@ const Milestones = () => {
         sections={[
           {
             value: 25,
-            color: "b",
-            label: "Finish Suggestion",
-            tooltip: "Finish Suggestion - 10 Gb"
+            color: "a",
+            label: "Finish Suggestion"
           },
           {
             value: 25,
             color: "b",
-            label: "Plan Budgut",
-            tooltip: "Plan Budgut - 23 Gb"
+            label: "Plan Budget"
           },
           {
             value: 25,
-            color: "b",
-            label: "Start Up",
-            tooltip: "Start Up - 23 Gb"
+            color: "c",
+            label: "Begin work"
           },
           {
             value: 25,
             color: "gray",
-            label: "End Finish",
-            tooltip: "End Finish - 0 Gb"
+            label: "Complete work"
           }
         ]}
       />
-      <p>Project Detail xxx</p>
-      <p>Some Information xxxxx</p>
+      <Text fz="lg" sx={{ margin: "50px 0" }}>
+        Project Detail xxx
+      </Text>
+      <Text fz="lg" sx={{ margin: "50px 0" }}>
+        Some information about the project + updates...
+      </Text>
     </>
   )
 }
