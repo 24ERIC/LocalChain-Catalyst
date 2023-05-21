@@ -14,6 +14,7 @@ const useStyles = createStyles((theme) => ({
     WebkitTextFillColor: "transparent",
     transform: "translateX(100%)",
     width: "100%",
+    overflowX: "hidden",
     animation: "scroll 10s linear infinite",
     "@keyframes scroll": {
       from: {
@@ -32,6 +33,8 @@ const ScrollingHeader = () => {
   return (
     <div className={classes.scrollContainer}>
       <Title className={classes.scrollingText}>
+        LocalChain Catalyst LocalChain Catalyst LocalChain Catalyst LocalChain
+        Catalyst LocalChain Catalyst LocalChain Catalyst LocalChain Catalyst
         LocalChain Catalyst
       </Title>
     </div>

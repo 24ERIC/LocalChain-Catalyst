@@ -9,7 +9,8 @@ import {
   Modal,
   Button,
   Progress,
-  Title
+  Title,
+  useMantineTheme
 } from "@mantine/core"
 import React, { useState, useEffect } from "react"
 
@@ -92,7 +93,8 @@ proposals.sort(function (a, b) {
 
 const useStyles = createStyles((theme) => ({
   card: {
-    backgroundColor: theme.colors.dark[6]
+    backgroundColor: theme.colors.dark[6],
+    marginTop: "40px"
   },
 
   item: {
@@ -112,8 +114,9 @@ const useStyles = createStyles((theme) => ({
   }
 }))
 
-function Proposals() {
+const Proposals = () => {
   const { classes } = useStyles()
+  const theme = useMantineTheme()
   const [opened, { open, close }] = useDisclosure(false)
   const [position, setPosition] = useState(0)
   const [progress, setProgress] = useState(0)
@@ -133,7 +136,7 @@ function Proposals() {
   }, [progress])
 
   const handleNotInterested = (title) => {
-    setProposal(proposal.filter((x) => x.title != title))
+    setProposal(proposal.filter((x) => x.title !== title))
     close()
   }
 
@@ -161,7 +164,7 @@ function Proposals() {
 
   return (
     <div>
-      <Title>Vote on Proposals</Title>
+      <Title sx={{ color: theme.colors.teal[5] }}>Vote on Proposals</Title>
       <Card withBorder radius="md" className={classes.card}>
         <Modal opened={opened} onClose={close} centered>
           <div
