@@ -1,12 +1,10 @@
 import React from "react"
-import * as ReactDOM from "react-dom/client"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { AppShell, Navbar, Header, Button } from "@mantine/core"
 import "./App.css"
 import Landing from "./pages/Landing"
 import Home from "./pages/Home"
 import Proposals from "./pages/Proposals"
-import Voting from "./pages/Voting"
 import Milestones from "./pages/Milestones"
 import SubmitProposal from "./pages/SubmitProposal"
 import Navigation from "./components/Navigation"
@@ -87,7 +85,7 @@ function App() {
     <>
       <Router>
         <AppShell
-          padding="md"
+          padding="xl"
           navbar={
             <Navbar width={{ base: 300 }} height={"100%"} p="xs">
               <Navigation />
@@ -114,7 +112,6 @@ function App() {
             <Route exact path="/" element={<Landing />} />
             <Route path="" element={<Home />} />
             <Route path="/proposals" element={<Proposals />} />
-            <Route path="/voting" element={<Voting />} />
             <Route path="/milestones" element={<Milestones />} />
             <Route path="/submitProposal" element={<SubmitProposal />} />
           </Routes>
@@ -154,6 +151,3 @@ function App() {
 }
 
 export default App
-
-const root = ReactDOM.createRoot(document.getElementById("root"))
-root.render(<App />)

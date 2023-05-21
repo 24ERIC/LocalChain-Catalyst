@@ -9,7 +9,6 @@ const Work = () => {
           <img
             src="https://www.w3schools.com/w3images/tech_mic.jpg"
             style={{ width: "100%" }}
-            onClick="onClick(this)"
             className="w3-hover-opacity"
             alt="A microphone"
           />
@@ -18,7 +17,6 @@ const Work = () => {
           <img
             src="https://www.w3schools.com/w3images/tech_phone.jpg"
             style={{ width: "100%" }}
-            onClick="onClick(this)"
             className="w3-hover-opacity"
             alt="A phone"
           />
@@ -27,7 +25,6 @@ const Work = () => {
           <img
             src="https://www.w3schools.com/w3images/tech_drone.jpg"
             style={{ width: "100%" }}
-            onClick="onClick(this)"
             className="w3-hover-opacity"
             alt="A drone"
           />
@@ -36,7 +33,6 @@ const Work = () => {
           <img
             src="https://www.w3schools.com/w3images/tech_sound.jpg"
             style={{ width: "100%" }}
-            onClick="onClick(this)"
             className="w3-hover-opacity"
             alt="Soundbox"
           />
@@ -48,7 +44,6 @@ const Work = () => {
           <img
             src="https://www.w3schools.com/w3images/tech_tablet.jpg"
             style={{ width: "100%" }}
-            onClick="onClick(this)"
             className="w3-hover-opacity"
             alt="A tablet"
           />
@@ -57,7 +52,6 @@ const Work = () => {
           <img
             src="https://www.w3schools.com/w3images/tech_camera.jpg"
             style={{ width: "100%" }}
-            onClick="onClick(this)"
             className="w3-hover-opacity"
             alt="A camera"
           />
@@ -66,7 +60,6 @@ const Work = () => {
           <img
             src="https://www.w3schools.com/w3images/tech_typewriter.jpg"
             style={{ width: "100%" }}
-            onClick="onClick(this)"
             className="w3-hover-opacity"
             alt="A typewriter"
           />
@@ -75,7 +68,6 @@ const Work = () => {
           <img
             src="https://www.w3schools.com/w3images/tech_tableturner.jpg"
             style={{ width: "100%" }}
-            onClick="onClick(this)"
             className="w3-hover-opacity"
             alt="A tableturner"
           />

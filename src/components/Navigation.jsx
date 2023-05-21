@@ -59,6 +59,7 @@ const Navigation = () => {
     <>
       {routes.map((route) => (
         <Link
+          key={route.label}
           className={cx(classes.link, {
             [classes.linkActive]: route.label === active
           })}
