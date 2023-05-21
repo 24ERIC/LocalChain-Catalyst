@@ -32,11 +32,7 @@ const ScrollingHeader = () => {
 
   return (
     <div className={classes.scrollContainer}>
-      <Title className={classes.scrollingText}>
-        LocalChain Catalyst LocalChain Catalyst LocalChain Catalyst LocalChain
-        Catalyst LocalChain Catalyst LocalChain Catalyst LocalChain Catalyst
-        LocalChain Catalyst
-      </Title>
+      <Title className={classes.scrollingText}>LocalChain Catalyst</Title>
     </div>
   )
 }

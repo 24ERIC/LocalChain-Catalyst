@@ -156,8 +156,9 @@ const Proposals = () => {
 
   const handleSupport = (title) => {
     proposal[position].votes += 1
-    setProposal(proposal.filter((x) => x.title != title))
+    setProposal(proposal.filter((x) => x.title !== title))
     close()
+  }
 
   const voteForProposal = async (title) => {
     const proposalName = { title }
