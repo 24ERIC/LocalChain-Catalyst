@@ -1,5 +1,4 @@
 import React from "react"
-import * as ReactDOM from "react-dom/client"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { AppShell, Navbar, Header, Button } from "@mantine/core"
 import "./App.css"
@@ -29,18 +28,11 @@ function App() {
     document.getElementById("metamaskPopup").style.display = "none"
   }
 
-  // function onClick(element) {
-  //   document.getElementById("img01").src = element.src
-  //   document.getElementById("modal01").style.display = "block"
-  //   var captionText = document.getElementById("caption")
-  //   captionText.innerHTML = element.alt
-  // }
-
   return (
     <>
       <Router>
         <AppShell
-          padding="md"
+          padding="xl"
           navbar={
             <Navbar width={{ base: 300 }} height={"100%"} p="xs">
               <Navigation />
@@ -112,6 +104,3 @@ function App() {
 }
 
 export default App
-
-const root = ReactDOM.createRoot(document.getElementById("root"))
-root.render(<App />)

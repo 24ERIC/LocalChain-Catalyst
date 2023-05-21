@@ -16,7 +16,7 @@ root.render(
       theme={{
         colorScheme: "dark",
         primaryColor: "teal",
-        primaryShade: 4,
+        primaryShade: 5,
         globalStyles
       }}
     >
