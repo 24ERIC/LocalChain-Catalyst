@@ -10,10 +10,10 @@ const Landing = () => {
   return (
     <>
       <Header />
-      <About />
-      <Promo />
+      {/* <About />
+      <Promo /> */}
       {/* <!-- Team Section --> */}
-      <div className="w3-container" style={{ padding: "128px 16px" }} id="team">
+      {/* <div className="w3-container" style={{ padding: "128px 16px" }} id="team">
         <h3 className="w3-center">THE TEAM</h3>
         <p className="w3-center w3-large">The ones who runs this company</p>
         <div
@@ -109,10 +109,10 @@ const Landing = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* <!-- Promo Section "Statistics" --> */}
-      <div className="w3-container w3-row w3-center w3-dark-grey w3-padding-64">
+      {/* <div className="w3-container w3-row w3-center w3-dark-grey w3-padding-64">
         <div className="w3-quarter">
           <span className="w3-xxlarge">14+</span>
           <br />
@@ -133,11 +133,11 @@ const Landing = () => {
           <br />
           Meetings
         </div>
-      </div>
-      <Work />
+      </div> */}
+      {/* <Work />
       <Skills />
       <Pricing />
-      <Contact />
+      <Contact /> */}
     </>
   )
 }
