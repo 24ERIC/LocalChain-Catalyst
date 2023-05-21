@@ -6,7 +6,7 @@ import { ChartBar, Checkbox, Home, Mailbox } from "tabler-icons-react"
 const routes = [
   {
     label: "Home",
-    link: "/home",
+    link: "/",
     icon: <Home size={22} strokeWidth={2} color={"grey"} />
   },
   {

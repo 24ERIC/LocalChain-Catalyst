@@ -2,6 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+const Accounts = require('web3-eth-accounts');
+const accounts = new Accounts();
+const web3 = require('web3');
 const session = require('express-session');
 const app = express();
 const nearApi = require('near-api-js');
@@ -10,6 +13,10 @@ const nearConfig = {
     nodeUrl: 'https://rpc.nearprotocol.com',
     walletUrl: 'https://wallet.nearprotocol.com',
     contractName: 'YOUR_CONTRACT_NAME', // Replace with your NEAR contract name
+};
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true, // enable passing cookies across different domains
 };
 
 app.use(session({
@@ -25,7 +32,7 @@ app.use(session({
         maxAge: 60 * 60 * 1000,
         // ...
     }}));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Serve static files from the build folder
@@ -44,29 +51,27 @@ app.post('/api/auth', async (req, res) => {
     // Extract user data from the request body
     const { provider, userAddress, signature } = req.body;
 
+
     if (provider === 'metamask') {
-
-        // Verify the signature
+         // Verify the signature
         const message = 'Authentication message';
-        const prefixedMessage = ethUtil.hashPersonalMessage(ethUtil.toBuffer(message));
-        const recoveredAddress = ethUtil.bufferToHex(ethUtil.pubToAddress(ethUtil.ecrecover(
-            ethUtil.toBuffer(prefixedMessage),
-            parseInt(signature.substr(130, 2), 16) - 27, // v value
-            ethUtil.toBuffer(signature.substr(0, 66)), // r value
-            ethUtil.toBuffer(signature.substr(66, 64)) // s value
-        )));
+        try {
+            // Recover the address from the signature
+            const recoveredAddress = accounts.recover(message, signature);
 
-        // Compare the recovered address with the user's provided address
-        if (recoveredAddress.toLowerCase() === userAddress.toLowerCase()) {
-            // Authentication successful
-            // Store the wallet address in the user's session
-            req.session.walletAddress = userAddress;
+            // Compare the recovered address with the user's provided address
+            if (recoveredAddress.toLowerCase() === userAddress.toLowerCase()) {
+                // Authentication successful
+                // Store the wallet address in the user's session
+                req.session.walletAddress = userAddress;
 
-            res.send({ message: "Metamask Authentication successful" });
-    }
-    else{
-            // Authentication failed
-            res.status(401).send({ error: "Metamask Authentication failed" });
+                res.send({ message: 'Metamask Authentication successful' });
+            } else {
+                res.status(401).send({ message: 'Metamask Authentication failed: Invalid signature' });
+            }
+        } catch (error) {
+            console.log(error);
+            res.status(400).send({ message: 'Metamask Authentication failed' });
         }
     }else if (provider === 'near') {
             // Handle NEAR Wallet authentication
