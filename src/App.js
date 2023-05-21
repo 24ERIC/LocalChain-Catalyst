@@ -14,7 +14,6 @@ import { createStyles } from "@mantine/styles"
 import { Logout } from "tabler-icons-react"
 import "./App.css"
 import Landing from "./pages/Landing"
-import Home from "./pages/Home"
 import Proposals from "./pages/Proposals"
 import Milestones from "./pages/Milestones"
 import SubmitProposal from "./pages/SubmitProposal"
@@ -137,7 +136,6 @@ function App() {
         >
           <Routes>
             <Route exact path="/" element={<Landing />} />
-            <Route path="" element={<Home />} />
             <Route path="/proposals" element={<Proposals />} />
             <Route path="/milestones" element={<Milestones />} />
             <Route path="/submitProposal" element={<SubmitProposal />} />
@@ -175,14 +173,11 @@ function App() {
                 marginBottom: "20px"
               }}
             >
-              Title of our Application
+              LocalChain Catalyst
             </Title>
             <Text fz="xl">
-              Long description of our application very very very very long
-              <br />
-              Even more text here so so so long text so it looks cooler
-              <br />
-              And one more line because it'll look so much better
+              Using blockchain technology to ignite, accelerate, and catalyze
+              positive change within the local community.
             </Text>
             <Group spacing="xl" sx={{ marginTop: "80px" }}>
               <Button size="md" onClick={handleMetamaskAuthSubmit}>
