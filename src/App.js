@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useNavigate } from "react-router-dom"
 import {
   AppShell,
   Navbar,
@@ -20,14 +20,14 @@ import Milestones from "./pages/Milestones"
 import SubmitProposal from "./pages/SubmitProposal"
 import Navigation from "./components/Navigation"
 import ScrollingHeader from "./components/ScrollingHeader"
-import Web3 from "web3";
-import axios from 'axios';
+import Web3 from "web3"
+import axios from "axios"
 import { ReactComponent as Blob } from "./assets/blob.svg"
-
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
   const theme = useMantineTheme()
+  const navigate = useNavigate()
 
   const useStyles = createStyles((theme) => ({
     link: {
@@ -49,62 +49,53 @@ function App() {
 
   const { classes } = useStyles()
 
-  function openMetamaskAuthPopup() {
-    document.getElementById("metamaskPopup").style.display = "block"
-  }
-
-  function closeMetamaskAuthPopup() {
-    document.getElementById("metamaskPopup").style.display = "none"
-  }
-
   async function handleMetamaskAuthSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
     if (!window.ethereum) {
       // Metamask extension is not installed or not accessible
-      console.error('Metamask extension is not installed or not accessible');
-      return;
+      console.error("Metamask extension is not installed or not accessible")
+      return
     }
 
     try {
       // Request permission to access accounts
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      await window.ethereum.request({ method: "eth_requestAccounts" })
 
       // Create a new Web3 instance using the Metamask provider
-      const web3 = new Web3(window.ethereum);
+      const web3 = new Web3(window.ethereum)
 
       // Get the current Ethereum accounts
-      const accounts = await web3.eth.getAccounts();
+      const accounts = await web3.eth.getAccounts()
 
       // Perform additional authentication logic, such as verifying the user's identity
 
       // Get the user's address
-      const userAddress = accounts[0];
+      const userAddress = accounts[0]
 
       // Prompt the user to sign a message
       const signature = await web3.eth.personal.sign(
-          'Authentication message', // Message to sign
-          userAddress, // User's Ethereum address
-          '' // Password (optional)
-      );
+        "Authentication message", // Message to sign
+        userAddress, // User's Ethereum address
+        "" // Password (optional)
+      )
 
       // Prepare the request data
       const requestData = {
-        provider: 'metamask',
+        provider: "metamask",
         userAddress,
-        signature,
-      };
+        signature
+      }
 
       // Send the request to the server
-      const response = await axios.post('/api/auth', requestData);
+      const response = await axios.post("/api/auth", requestData)
 
       // Handle the server response
-      console.log(response.data); // You can modify this according to your needs
-      setLoggedIn(true);
-      // Reset the form fields or perform any other necessary actions
-      closeMetamaskAuthPopup();
+      console.log(response.data) // You can modify this according to your needs
+      setLoggedIn(true)
+      navigate("/")
     } catch (error) {
       // Handle errors, such as user denying permission or network issues
-      console.error('Metamask authentication failed:', error);
+      console.error("Metamask authentication failed:", error)
     }
   }
 
@@ -194,28 +185,13 @@ function App() {
               And one more line because it'll look so much better
             </Text>
             <Group spacing="xl" sx={{ marginTop: "80px" }}>
-{/*              <Button size="md" onClick={() => setLoggedIn(true)}>
-                Connect NEAR Wallet
-              </Button>*/}
-
-              <Button onClick={openMetamaskAuthPopup}>
-                Connect a MetaMask wallet
-              </Button>            </Group>
+              <Button size="md" onClick={handleMetamaskAuthSubmit}>
+                Connect a wallet
+              </Button>
+            </Group>
           </div>
         </div>
       )}
-      <div id="metamaskPopup" className="popup">
-        <div className="popup-content">
-          <span className="close" onClick={closeMetamaskAuthPopup}>
-            &times;
-          </span>
-          <h2>MetaMask Wallet</h2>
-          <form onSubmit={handleMetamaskAuthSubmit}>
-
-          <button type="submit">Connect</button>
-          </form>
-        </div>
-      </div>
     </>
   )
 }
