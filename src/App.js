@@ -12,7 +12,6 @@ import {
 } from "@mantine/core"
 import { createStyles } from "@mantine/styles"
 import { Logout } from "tabler-icons-react"
-import "./App.css"
 import Landing from "./pages/Landing"
 import Proposals from "./pages/Proposals"
 import Milestones from "./pages/Milestones"
@@ -176,12 +175,22 @@ function App() {
               LocalChain Catalyst
             </Title>
             <Text fz="xl">
-              At LocalChain Catalyst, we are passionate about leveraging blockchain technology to ignite positive change within local communities. Our platform serves as a catalyst for transformation, empowering individuals, businesses, and organizations to make a lasting impact on their local ecosystem.
+              At LocalChain Catalyst, we are passionate about leveraging
+              blockchain technology to ignite positive change within local
+              communities. Our platform serves as a catalyst for transformation,
+              empowering individuals, businesses, and organizations to make a
+              lasting impact on their local ecosystem.
               <br />
-              With LocalChain Catalyst, we aim to revolutionize community engagement, economic growth, and social empowerment. By combining the decentralized nature of blockchain technology with a focus on local communities, we create a powerful platform that fosters collaboration, trust, and transparency.              <br />
-              Our Vision:
-              We envision a world where local communities thrive, powered by the innovative potential of blockchain technology. Our vision is to create an inclusive ecosystem where individuals and organizations can connect, collaborate, and contribute to the betterment of their community.
-
+              With LocalChain Catalyst, we aim to revolutionize community
+              engagement, economic growth, and social empowerment. By combining
+              the decentralized nature of blockchain technology with a focus on
+              local communities, we create a powerful platform that fosters
+              collaboration, trust, and transparency. <br />
+              Our Vision: We envision a world where local communities thrive,
+              powered by the innovative potential of blockchain technology. Our
+              vision is to create an inclusive ecosystem where individuals and
+              organizations can connect, collaborate, and contribute to the
+              betterment of their community.
             </Text>
             <Group spacing="xl" sx={{ marginTop: "80px" }}>
               <Button size="md" onClick={handleMetamaskAuthSubmit}>
