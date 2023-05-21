@@ -7,13 +7,6 @@ const accounts = new Accounts();
 const web3 = require('web3');
 const session = require('express-session');
 const app = express();
-const nearApi = require('near-api-js');
-const nearConfig = {
-    networkId: 'default',
-    nodeUrl: 'https://rpc.nearprotocol.com',
-    walletUrl: 'https://wallet.nearprotocol.com',
-    contractName: 'YOUR_CONTRACT_NAME', // Replace with your NEAR contract name
-};
 const corsOptions = {
     origin: 'http://localhost:3000',
     credentials: true, // enable passing cookies across different domains
@@ -73,29 +66,7 @@ app.post('/api/auth', async (req, res) => {
             console.log(error);
             res.status(400).send({ message: 'Metamask Authentication failed' });
         }
-    }else if (provider === 'near') {
-            // Handle NEAR Wallet authentication
-            const keyStore = new nearApi.keyStores.BrowserLocalStorageKeyStore();
-            const near = await nearApi.connect({
-                networkId: nearConfig.networkId,
-                nodeUrl: nearConfig.nodeUrl,
-                deps: { keyStore },
-            });
-            const wallet = new nearApi.WalletConnection(near, nearConfig.contractName);
-
-            try {
-                await wallet.account().signIn();
-
-                // Authentication successful
-                // Store the wallet address in the user's session
-                req.session.walletAddress = wallet.getAccountId();
-
-                res.send({ message: "NEAR Authentication successful" });
-            } catch (error) {
-                // Authentication failed
-                res.status(401).send({ error: "NEAR Authentication failed" });
-            }
-        }
+    }
         else {
         // Authentication failed
         res.status(401).send({ error: "Authentication failed. Invalid provider" });

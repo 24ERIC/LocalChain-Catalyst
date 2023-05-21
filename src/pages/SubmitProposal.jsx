@@ -18,7 +18,7 @@ import { Upload, Photo, X } from "tabler-icons-react"
 const categories = [
   {
     value: "wikispaces.com",
-    label: "IOPAMIDOL"
+    label: "Recycling"
   },
   {
     value: "rakuten.co.jp",
