@@ -137,6 +137,20 @@ const Proposals = () => {
   const [progColor, setProgColor] = useState("red")
   const [proposal, setProposal] = useState(proposals)
 
+  useEffect(
+    () => async () => {
+      fetch("/proposals")
+        .then((response) => response.json())
+        .then((data) => {
+          setProposal(data.proposals.filter((x) => x.userAddress !== null))
+        })
+        .catch((error) => {
+          console.error("Error:", error)
+        })
+    },
+    []
+  )
+
   useEffect(() => {
     if (progress <= 40) {
       setProgColor("red")
@@ -154,9 +168,26 @@ const Proposals = () => {
     close()
   }
 
+  const voteForProposal = async (title) => {
+    const proposalName = { title }
+    fetch("/voteForProposal", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(proposalName)
+    })
+      .then((response) => {
+        console.log("success?", response)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
   const items = proposal.map((item, index) => (
     <UnstyledButton
-      key={item.title}
+      key={index}
       className={classes.item}
       onClick={() => {
         setPosition(index)
@@ -165,7 +196,7 @@ const Proposals = () => {
       }}
     >
       <Text size="lg" mt={7}>
-        {item.title}
+        {item.proposalName}
       </Text>
     </UnstyledButton>
   ))
@@ -186,22 +217,22 @@ const Proposals = () => {
             <div style={{ textAlign: "center" }}>
               <div style={{ marginBottom: "20px" }}>
                 <b>Proposal Name:</b> <br />
-                {proposal[position]?.title}
+                {proposal[position]?.proposalName}
                 <br />
               </div>
               <div style={{ marginBottom: "20px" }}>
                 <b>Proposal Category:</b> <br />
-                {proposal[position]?.cat}
+                {proposal[position]?.proposalCategory}
                 <br />
               </div>
               <div style={{ marginBottom: "20px" }}>
                 <b>Description:</b> <br />
-                {proposal[position]?.desc}
+                {proposal[position]?.proposalDescription}
                 <br />
               </div>
-              <b>Date Created:</b> <br />
+              {/* <b>Date Created:</b> <br />
               {proposal[position]?.date}
-              <br />
+              <br /> */}
             </div>
             <div>
               <Button
@@ -215,6 +246,10 @@ const Proposals = () => {
                 size="md"
                 sx={{ margin: "30px 15px 30px 15px" }}
                 color="green"
+                onClick={() => {
+                  voteForProposal(proposal[position].title)
+                  console.log("voting for this")
+                }}
               >
                 Support
               </Button>
