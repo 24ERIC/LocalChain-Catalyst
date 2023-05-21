@@ -184,14 +184,15 @@ function App() {
                 marginBottom: "20px"
               }}
             >
-              Title of our Application
+              LocalChain Catalyst
             </Title>
             <Text fz="xl">
-              Long description of our application very very very very long
+              At LocalChain Catalyst, we are passionate about leveraging blockchain technology to ignite positive change within local communities. Our platform serves as a catalyst for transformation, empowering individuals, businesses, and organizations to make a lasting impact on their local ecosystem.
               <br />
-              Even more text here so so so long text so it looks cooler
-              <br />
-              And one more line because it'll look so much better
+              With LocalChain Catalyst, we aim to revolutionize community engagement, economic growth, and social empowerment. By combining the decentralized nature of blockchain technology with a focus on local communities, we create a powerful platform that fosters collaboration, trust, and transparency.              <br />
+              Our Vision:
+              We envision a world where local communities thrive, powered by the innovative potential of blockchain technology. Our vision is to create an inclusive ecosystem where individuals and organizations can connect, collaborate, and contribute to the betterment of their community.
+
             </Text>
             <Group spacing="xl" sx={{ marginTop: "80px" }}>
 {/*              <Button size="md" onClick={() => setLoggedIn(true)}>

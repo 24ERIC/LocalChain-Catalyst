@@ -32,7 +32,7 @@ const ScrollingHeader = () => {
   return (
     <div className={classes.scrollContainer}>
       <Title className={classes.scrollingText}>
-        Solana Project for OlympiHacks
+        LocalChain Catalyst
       </Title>
     </div>
   )
