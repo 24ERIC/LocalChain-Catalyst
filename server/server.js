@@ -1,7 +1,52 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
-const fs = require('fs');
+'use strict'
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database('database.db');
+db.run(`
+    CREATE TABLE IF NOT EXISTS proposals (
+                                             userAddress TEXT,
+                                             proposalName TEXT,
+                                             proposalCategory TEXT,
+                                             proposalDescription TEXT,
+                                             imageUrl TEXT,
+                                             votes INTEGER,
+                                             PRIMARY KEY (userAddress, proposalName)
+        )
+`);
+const fs = require('fs')
+const path = require('path')
+const axios = require('axios')
+
+async function downloadImage(url) {
+    try {
+        const directoryPath = path.join(__dirname, '../Proposals/Images');
+        const filename = path.basename(url);
+        const filepath = path.join(directoryPath, filename);
+
+        // Ensure the Images directory exists
+        if (!fs.existsSync(directoryPath)) {
+            fs.mkdirSync(directoryPath, { recursive: true });
+        }
+
+        const writer = fs.createWriteStream(filepath);
+        const response = await axios({
+            url,
+            method: 'GET',
+            responseType: 'stream',
+        });
+
+        response.data.pipe(writer);
+
+        return new Promise((resolve, reject) => {
+            writer.on('finish', () => resolve({ filename }));
+            writer.on('error', reject);
+        });
+    } catch (error) {
+        console.error('Error downloading image:', error);
+        throw error;
+    }
+}
 const Accounts = require('web3-eth-accounts');
 const accounts = new Accounts();
 const web3 = require('web3');
@@ -87,12 +132,76 @@ app.get('/api/user', (req, res) => {
     res.send({ user: walletAddress });
 });
 
-app.post('/submitProposal', (req, res) => {
+app.post('/submitProposal', async (req, res) => {
     console.log(req.body);
-    if (!req.body) {
-        return res.status(400).json({ status: 'Failed' });
+
+    // Check if required fields are empty
+    const { proposalName, proposalCategory, proposalDescription, userAddress } = req.body;
+    if (!proposalName || !proposalCategory || !proposalDescription || !userAddress) {
+        return res.status(400).json({ status: 'Failed', error: 'Missing required fields' });
     }
-    return res.status(200).json({ status: 'Proposal received' });
+
+    let imageUrl = req.imageUrl
+
+    if (imageUrl !== null) {
+        try {
+            const filepath = path.join(__dirname, '../Proposals/Images/');
+            await downloadImage(imageUrl, filepath)
+                .then(({ filename }) => {
+                    imageUrl = filename;
+                    console.log(filepath);
+                    console.log(filename);
+                    // Further processing or response handling with the updated imageUrl
+                    // ...
+                })
+                .catch((error) => {
+                    // Handle any errors that occur during image download
+                    console.error('Error downloading image:', error);
+                });
+        } catch (error) {
+            console.error('Error downloading image:', error);
+            return res.status(500).json({ status: 'Failed', error: 'Image download failed' });
+        }
+    }
+
+    // Create a new proposal object
+    const proposal = {
+        proposalName,
+        proposalCategory,
+        proposalDescription,
+        imageUrl,
+        userAddress,
+    };
+    db.run(`
+    INSERT INTO proposals (
+        proposalName,
+        proposalCategory,
+        proposalDescription,
+        imageUrl,
+        userAddress,
+        votes
+    )
+    VALUES (?, ?, ?, ?, ?, ?)
+`, [
+        proposal.userAddress,
+        proposal.proposalName,
+        proposal.proposalCategory,
+        proposal.proposalDescription,
+        proposal.imageUrl,
+        0
+    ], function (error) {
+        if (error) {
+            console.error('Error inserting proposal:', error);
+        } else {
+            console.log('Proposal inserted successfully');
+        }
+    });
+    db.close();
+
+    console.log(proposal)
+        console.log('Proposal saved successfully');
+        return res.status(200).json({ status: 'Proposal received' });
+
 });
 
 app.listen(8000, () => {
