@@ -15,88 +15,74 @@ import React, { useState, useEffect } from "react"
 
 const proposals = [
   {
-    title: "Flashpoint",
-    cat: "Termite Control",
-    desc: "Puce",
-    votes: 60372,
+    title: "Build a New Church",
+    cat: "Social Services and Welfare",
+    desc: "Build a new Church at Newlands Heath Rd and Moorfield Walk Ave",
+    votes: 6037,
     date: "11/20/2022"
   },
   {
-    title: "Mynte",
+    title: "Create a new Bus Stop",
     cat: "Marlite Panels (FED)",
     desc: "Aquamarine",
-    votes: 7522,
+    votes: 752,
     date: "8/17/2022"
   },
   {
-    title: "Fanoodle",
+    title: "Pave a street",
     cat: "Drilled Shafts",
     desc: "Green",
-    votes: 77164,
+    votes: 7716,
     date: "8/11/2022"
   },
   {
-    title: "Avavee",
+    title: "Fund the Library",
     cat: "RF Shielding",
     desc: "Crimson",
-    votes: 82060,
+    votes: 8206,
     date: "3/1/2023"
   },
   {
-    title: "Buzzster",
+    title: "Invest in Elementary Schools",
     cat: "Fire Protection",
     desc: "Violet",
-    votes: 14057,
+    votes: 1405,
     date: "2/7/2023"
   },
   {
-    title: "Skipfire",
+    title: "Create a new Park",
     cat: "Structural & Misc Steel Erection",
     desc: "Pink",
-    votes: 7064,
+    votes: 706,
     date: "3/28/2023"
   },
   {
-    title: "Lajo",
+    title: "Professional Training Bootcamp",
     cat: "EIFS",
     desc: "Indigo",
-    votes: 95743,
+    votes: 9574,
     date: "4/16/2023"
   },
   {
-    title: "Eayo",
+    title: "Build a Statue",
     cat: "Wall Protection",
     desc: "Green",
-    votes: 19354,
-    date: "1/14/2023"
+    votes: 1935,
+    date: "7/14/2022"
   },
   {
-    title: "Topicware",
-    cat: "Structural and Misc Steel (Fabrication)",
-    desc: "Goldenrod",
-    votes: 91735,
-    date: "8/2/2022"
+    title: "Build a new Garden",
+    cat: "Wall Protection",
+    desc: "Green",
+    votes: 5935,
+    date: "12/4/2022"
   },
   {
-    title: "Youopia",
-    cat: "Roofing (Asphalt)",
-    desc: "Purple",
-    votes: 23574,
-    date: "12/22/2022"
-  },
-  {
-    title: "Kazio",
-    cat: "Electrical",
-    desc: "Turquoise",
-    votes: 44579,
-    date: "12/19/2022"
-  },
-  {
-    title: "Quaxo",
-    cat: "Framing (Steel)",
-    desc: "Crimson",
-    votes: 7209,
-    date: "9/16/2022"
+    title: "Celebrate Oktoberfest",
+    cat: "Wall Protection",
+    desc: "Green",
+    votes: 8725,
+    date: "9/11/2021"
   }
 ]
 
@@ -151,13 +137,19 @@ function Proposals() {
     close()
   }
 
+  const handleSupport = (title) => {
+    proposal[position].votes += 1
+    setProposal(proposal.filter((x) => x.title != title))
+    close()
+  }
+
   const items = proposal.map((item, index) => (
     <UnstyledButton
       key={item.title}
       className={classes.item}
       onClick={() => {
         setPosition(index)
-        setProgress(100 * (item.votes / 100000))
+        setProgress(100 * (item.votes / 10000))
         open()
       }}
     >
@@ -212,6 +204,7 @@ function Proposals() {
                 size="md"
                 sx={{ margin: "30px 15px 30px 15px" }}
                 color="green"
+                onClick={() => handleSupport(proposal[position].title)}
               >
                 Support
               </Button>
@@ -226,7 +219,7 @@ function Proposals() {
                 size="sm"
                 style={{ marginTop: "5px", marginBottom: "17px" }}
               >
-                {proposal[position]?.votes} of 100000 <b>Votes</b>
+                {proposal[position]?.votes} of 10000 <b>Votes</b>
               </Text>
             </div>
           </div>
