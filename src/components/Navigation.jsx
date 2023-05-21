@@ -56,7 +56,7 @@ const Navigation = () => {
   const { classes, cx } = useStyles()
 
   return (
-    <>
+    <div>
       {routes.map((route) => (
         <Link
           key={route.label}
@@ -69,7 +69,7 @@ const Navigation = () => {
           {route.icon}&nbsp;&nbsp;{route.label}
         </Link>
       ))}
-    </>
+    </div>
   )
 }
 

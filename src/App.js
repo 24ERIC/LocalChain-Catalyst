@@ -1,6 +1,17 @@
-import React from "react"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { AppShell, Navbar, Header, Button } from "@mantine/core"
+import React, { useState } from "react"
+import { Routes, Route } from "react-router-dom"
+import {
+  AppShell,
+  Navbar,
+  Header,
+  Button,
+  useMantineTheme,
+  Title,
+  Text,
+  Group
+} from "@mantine/core"
+import { createStyles } from "@mantine/styles"
+import { Logout } from "tabler-icons-react"
 import "./App.css"
 import Landing from "./pages/Landing"
 import Home from "./pages/Home"
@@ -9,11 +20,32 @@ import Milestones from "./pages/Milestones"
 import SubmitProposal from "./pages/SubmitProposal"
 import Navigation from "./components/Navigation"
 import ScrollingHeader from "./components/ScrollingHeader"
-import Web3 from "web3";
-import axios from 'axios';
-
+import { ReactComponent as Blob } from "./assets/blob.svg"
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false)
+  const theme = useMantineTheme()
+
+  const useStyles = createStyles((theme) => ({
+    link: {
+      display: "flex",
+      alignItems: "center",
+      fontSize: theme.fontSizes.lg,
+      textDecoration: "none",
+      padding: `${theme.spacing.md} ${theme.spacing.md}`,
+      marginBottom: "10px",
+      borderRadius: theme.radius.sm,
+      fontWeight: 500,
+
+      "&:hover": {
+        backgroundColor: theme.colors.dark[6],
+        color: theme.white
+      }
+    }
+  }))
+
+  const { classes } = useStyles()
+
   function openNearAuthPopup() {
     document.getElementById("nearPopup").style.display = "block"
   }
@@ -30,71 +62,29 @@ function App() {
     document.getElementById("metamaskPopup").style.display = "none"
   }
 
-  async function handleMetamaskAuthSubmit(event) {
-    event.preventDefault();
-    if (!window.ethereum) {
-      // Metamask extension is not installed or not accessible
-      console.error('Metamask extension is not installed or not accessible');
-      return;
-    }
-
-    try {
-      // Request permission to access accounts
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
-
-      // Create a new Web3 instance using the Metamask provider
-      const web3 = new Web3(window.ethereum);
-
-      // Get the current Ethereum accounts
-      const accounts = await web3.eth.getAccounts();
-
-      // Perform additional authentication logic, such as verifying the user's identity
-
-      // Get the user's address
-      const userAddress = accounts[0];
-
-      // Prompt the user to sign a message
-      const signature = await web3.eth.personal.sign(
-          'Authentication message', // Message to sign
-          userAddress, // User's Ethereum address
-          '' // Password (optional)
-      );
-
-      // Prepare the request data
-      const requestData = {
-        provider: 'metamask',
-        userAddress,
-        signature,
-      };
-
-      // Send the request to the server
-      const response = await axios.post('/api/auth', requestData);
-
-      // Handle the server response
-      console.log(response.data); // You can modify this according to your needs
-
-      // Reset the form fields or perform any other necessary actions
-      closeMetamaskAuthPopup();
-    } catch (error) {
-      // Handle errors, such as user denying permission or network issues
-      console.error('Metamask authentication failed:', error);
-    }
-  }
-
   return (
     <>
-      <Router>
+      {loggedIn ? (
         <AppShell
           padding="xl"
           navbar={
             <Navbar width={{ base: 300 }} height={"100%"} p="xs">
-              <Navigation />
-              <Button onClick={openNearAuthPopup} sx={{ marginBottom: "20px" }}>
-                Connect a NEAR wallet
-              </Button>
-              <Button onClick={openMetamaskAuthPopup}>
-                Connect a MetaMask wallet
-              </Button>
+              <div
+                style={{
+                  height: "calc(100% - 82px)",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between"
+                }}
+              >
+                <Navigation />
+                <div onClick={() => setLoggedIn(false)}>
+                  <Text className={classes.link} sx={{ cursor: "pointer" }}>
+                    <Logout size={22} strokeWidth={2} color={"grey"} />
+                    &nbsp;&nbsp; Log out
+                  </Text>
+                </div>
+              </div>
             </Navbar>
           }
           header={
@@ -110,13 +100,62 @@ function App() {
         >
           <Routes>
             <Route exact path="/" element={<Landing />} />
-            <Route path="" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/proposals" element={<Proposals />} />
             <Route path="/milestones" element={<Milestones />} />
             <Route path="/submitProposal" element={<SubmitProposal />} />
           </Routes>
         </AppShell>
-      </Router>
+      ) : (
+        <div
+          style={{
+            backgroundColor: theme.colors.dark[7],
+            maxHeight: "100vh",
+            overflow: "hidden"
+          }}
+        >
+          <Blob
+            style={{
+              position: "absolute",
+              right: 0,
+              maxWidth: "100%",
+              maxHeight: "100%"
+            }}
+          />
+          <div
+            style={{
+              height: "100vh",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              marginLeft: "30px",
+              width: "40%"
+            }}
+          >
+            <Title
+              sx={{
+                color: theme.colors.teal[5],
+                marginBottom: "20px"
+              }}
+            >
+              Title of our Application
+            </Title>
+            <Text fz="xl">
+              Long description of our application very very very very long
+              <br />
+              Even more text here so so so long text so it looks cooler
+              <br />
+              And one more line because it'll look so much better
+            </Text>
+            <Group spacing="xl" sx={{ marginTop: "80px" }}>
+              <Button size="md" onClick={() => setLoggedIn(true)}>
+                Connect NEAR Wallet
+              </Button>
+              <Button size="md">Connect MetaMask Wallet</Button>
+            </Group>
+          </div>
+        </div>
+      )}
       <div id="nearPopup" className="popup">
         <div className="popup-content">
           <span className="close" onClick={closeNearAuthPopup}>
@@ -139,10 +178,15 @@ function App() {
           <span className="close" onClick={closeMetamaskAuthPopup}>
             &times;
           </span>
-          <h2>MetaMask Wallet</h2>
-          <form onSubmit={handleMetamaskAuthSubmit}>
-
-          <button type="submit">Connect</button>
+          <h2>Connect MetaMask Wallet</h2>
+          <form>
+            <div className="input-wrapper">
+              <input type="text" placeholder="Username" />
+            </div>
+            <div className="input-wrapper">
+              <input type="password" placeholder="Password" />
+            </div>
+            <button type="submit">Submit</button>
           </form>
         </div>
       </div>
