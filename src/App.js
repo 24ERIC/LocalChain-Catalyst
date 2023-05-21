@@ -6,7 +6,6 @@ import "./App.css"
 import Landing from "./pages/Landing"
 import Home from "./pages/Home"
 import Proposals from "./pages/Proposals"
-import Voting from "./pages/Voting"
 import Milestones from "./pages/Milestones"
 import SubmitProposal from "./pages/SubmitProposal"
 import Navigation from "./components/Navigation"
@@ -67,7 +66,6 @@ function App() {
             <Route exact path="/" element={<Landing />} />
             <Route path="/home" element={<Home />} />
             <Route path="/proposals" element={<Proposals />} />
-            <Route path="/voting" element={<Voting />} />
             <Route path="/milestones" element={<Milestones />} />
             <Route path="/submitProposal" element={<SubmitProposal />} />
           </Routes>
