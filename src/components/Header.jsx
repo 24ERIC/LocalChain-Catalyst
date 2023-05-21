@@ -1,6 +1,9 @@
 import { Button, Image, Text, Title } from "@mantine/core"
+import { useNavigate } from "react-router-dom"
 
 const Header = () => {
+  const navigate = useNavigate()
+
   return (
     <div style={{ position: "relative", color: "white" }}>
       <Image
@@ -14,7 +17,11 @@ const Header = () => {
         <Text fz="xl" sx={{ marginBottom: "70px" }}>
           Be the change in your community.
         </Text>
-        <Button variant="outline" size="md">
+        <Button
+          variant="outline"
+          size="md"
+          onClick={() => navigate("/submitProposal")}
+        >
           Submit a proposal
         </Button>
       </div>

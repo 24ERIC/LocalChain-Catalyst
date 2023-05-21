@@ -231,6 +231,23 @@ app.post("/submitProposal", async (req, res) => {
   return res.status(200).json({ status: "Proposal received" })
 })
 
+app.put("/voteForProposal", async (req, res) => {
+  console.log(req.body)
+
+  const { proposalName } = req.body
+
+  db.run(
+    `UPDATE proposals SET votes = votes + 1 WHERE proposalName = "${proposalName}";`,
+    function (error, result) {
+      if (error) {
+        console.error("Error adding vote:", error)
+      } else {
+        return res.status(200).json({ result })
+      }
+    }
+  )
+})
+
 app.listen(8000, () => {
   console.log("Server listening on port 8000")
 })
