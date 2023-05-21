@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Routes, Route, useLocation } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import {
   AppShell,
   Navbar,
@@ -10,6 +10,8 @@ import {
   Text,
   Group
 } from "@mantine/core"
+import { createStyles } from "@mantine/styles"
+import { Logout } from "tabler-icons-react"
 import "./App.css"
 import Landing from "./pages/Landing"
 import Home from "./pages/Home"
@@ -23,6 +25,26 @@ import { ReactComponent as Blob } from "./assets/blob.svg"
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
   const theme = useMantineTheme()
+
+  const useStyles = createStyles((theme) => ({
+    link: {
+      display: "flex",
+      alignItems: "center",
+      fontSize: theme.fontSizes.lg,
+      textDecoration: "none",
+      padding: `${theme.spacing.md} ${theme.spacing.md}`,
+      marginBottom: "10px",
+      borderRadius: theme.radius.sm,
+      fontWeight: 500,
+
+      "&:hover": {
+        backgroundColor: theme.colors.dark[6],
+        color: theme.white
+      }
+    }
+  }))
+
+  const { classes } = useStyles()
 
   function openNearAuthPopup() {
     document.getElementById("nearPopup").style.display = "block"
@@ -47,13 +69,22 @@ function App() {
           padding="xl"
           navbar={
             <Navbar width={{ base: 300 }} height={"100%"} p="xs">
-              <Navigation />
-              {/* <Button onClick={openNearAuthPopup} sx={{ marginBottom: "20px" }}>
-                Connect a NEAR wallet
-              </Button>
-              <Button onClick={openMetamaskAuthPopup}>
-                Connect a MetaMask wallet
-              </Button> */}
+              <div
+                style={{
+                  height: "calc(100% - 82px)",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between"
+                }}
+              >
+                <Navigation />
+                <div onClick={() => setLoggedIn(false)}>
+                  <Text className={classes.link} sx={{ cursor: "pointer" }}>
+                    <Logout size={22} strokeWidth={2} color={"grey"} />
+                    &nbsp;&nbsp; Log out
+                  </Text>
+                </div>
+              </div>
             </Navbar>
           }
           header={
