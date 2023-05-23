@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+Our project, a blockchain-related website designed to streamline the proposal submission, voting, and milestone tracking process, has been met with resounding success. Allow me to provide you with a detailed overview of our accomplishments and the features of our innovative platform.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🔹 Project Overview:
+Our website serves as a centralized hub for proposal submission, voting, and milestone tracking. With several key pages, including Home, Submit a Proposal, Vote on Proposals, and Milestones, we have created a comprehensive platform that fosters collaboration, transparency, and community involvement.
 
-## Available Scripts
+🔹 Home Page:
+The Home page acts as an information hub, offering visitors a clear understanding of the project's purpose, objectives, and overall concept. It serves as a foundation for users to explore the functionalities of our platform.
 
-In the project directory, you can run:
+🔹 Submit a Proposal:
+The Submit a Proposal page empowers participants to present their project ideas. Through multiple input text boxes, participants can provide essential details such as the Proposal Name, Proposal Category, and Description. Additionally, participants can upload an image related to their proposal. To encourage community engagement, we have included a checkbox that mandates a minimum number of votes for a proposal to proceed.
 
-### `npm start`
+🔹 Vote on Proposals:
+Our Vote on Proposals page enables users to cast their votes for the submitted proposals. Users can carefully review each proposal, assess its merits, and vote for the projects they find most promising. This democratic approach ensures that the most popular and supported proposals receive the attention they deserve.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+🔹 Milestones:
+The Milestones page showcases a status progress bar for each proposal, visually representing the various milestones and tracking the progress of each project. This feature provides participants and the community with a clear overview of the advancement of proposals and fosters transparency in the project lifecycle.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+🔹 Inspiration:
+Our inspiration for this project stemmed from the desire to streamline the proposal submission and voting process within the blockchain community. We aimed to create a platform that encourages collaboration, community involvement, and ensures transparency and accountability throughout the project lifecycle.
 
-### `npm test`
+🔹 Development Process:
+To bring this project to life, we utilized a range of cutting-edge technologies and tools. The frontend was developed using popular frameworks like React, ensuring a responsive and user-friendly interface. We seamlessly integrated smart contract functionality through blockchain technology, guaranteeing transparency and immutability in the voting and milestone tracking processes. Furthermore, we leveraged backend technologies such as Node.js and Express to handle data storage and retrieval, with SQLite serving as the database.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+🔹 Challenges Faced:
+Throughout the development process, we encountered several challenges. Integrating blockchain technology seamlessly with the frontend proved to be a significant hurdle. Additionally, designing an intuitive user interface that enhanced the user experience and encouraged active participation presented its complexities. Nevertheless, through collaborative problem-solving, extensive research, and iterative development, we overcame these challenges and delivered a remarkable solution.
 
-### `npm run build`
+🔹 Accomplishments:
+We take immense pride in successfully implementing a comprehensive platform that simplifies the proposal submission, voting, and milestone tracking processes. Our team's unwavering collaboration and dedication enabled us to overcome technical obstacles and create an intuitive user experience. We are honored to provide a transparent and inclusive environment for the blockchain community to showcase their ideas and contribute to the project selection process.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+🔹 Lessons Learned:
+Throughout the development of this project, we acquired valuable insights into integrating blockchain technology into web applications. We deepened our understanding of smart contracts, decentralized storage, and the intricacies of ensuring a secure and reliable user experience. Additionally, we honed our frontend and backend development skills, applying best practices to deliver a polished and functional website.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+🔹 What's Next:
+Looking ahead, we have exciting plans to further enhance the platform. We aim to incorporate additional features, refine the user experience, and expand community engagement by integrating social media sharing functionalities. Additionally, we will explore the integration of decentralized identity solutions to enhance security and trust within the platform. We remain committed to continuous development and iterative improvements, fueled by feedback from the blockchain community.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+We would like to express our deepest gratitude to the Waterloo Blockchain Hackathon organizers for providing us with the opportunity to showcase our innovative project. We also extend our heartfelt thanks to our team members, mentors, and supporters for their unwavering commitment and guidance throughout this exhilarating journey.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+🌐 Experience our blockchain-powered platform today
